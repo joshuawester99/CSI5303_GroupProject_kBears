@@ -2,6 +2,7 @@
 package driver;
 
 import loginandsignup.LoginController;
+import room_interface.RoomController;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -16,7 +17,8 @@ public class Main {
     
     public static void main(String[] args) {
     	
-        new LoginController();
+        new RoomController();
+        // new LoginController();
     	
 //        users.put("admin", new Admin());
 //              
