@@ -24,7 +24,7 @@ public class SignUp extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         password = new javax.swing.JPasswordField();
         SignUpButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        previous_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sign Up");
@@ -126,15 +126,15 @@ public class SignUp extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(21, 71, 52));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Previous");
-        jButton2.setToolTipText("");
-        jButton2.setPreferredSize(new java.awt.Dimension(329, 159));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        previous_button.setBackground(new java.awt.Color(21, 71, 52));
+        previous_button.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        previous_button.setForeground(new java.awt.Color(255, 255, 255));
+        previous_button.setText("Previous");
+        previous_button.setToolTipText("");
+        previous_button.setPreferredSize(new java.awt.Dimension(329, 159));
+        previous_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                previous_buttonActionPerformed(evt);
             }
         });
 
@@ -144,7 +144,7 @@ public class SignUp extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(previous_button, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(285, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -172,7 +172,7 @@ public class SignUp extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(previous_button, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -230,14 +230,14 @@ public class SignUp extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_SignUpButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void previous_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previous_buttonActionPerformed
 
         Login LoginFrame = new Login();
         LoginFrame.setVisible(true);
         LoginFrame.pack();
         LoginFrame.setLocationRelativeTo(null); // center
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_previous_buttonActionPerformed
 
 
 
@@ -245,7 +245,6 @@ public class SignUp extends javax.swing.JFrame {
     private javax.swing.JButton SignUpButton;
     private javax.swing.JTextField email;
     private javax.swing.JTextField fname;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -257,5 +256,6 @@ public class SignUp extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPasswordField password;
+    private javax.swing.JButton previous_button;
     // End of variables declaration//GEN-END:variables
 }
