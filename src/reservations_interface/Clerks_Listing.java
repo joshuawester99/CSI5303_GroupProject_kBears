@@ -21,6 +21,7 @@ public class Clerks_Listing extends javax.swing.JFrame {
         profile_button = new javax.swing.JButton();
         rooms_button = new javax.swing.JButton();
         sign_out_button = new javax.swing.JButton();
+        edit_button = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         room_list = new javax.swing.JTable();
@@ -29,7 +30,6 @@ public class Clerks_Listing extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 500));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 184, 28));
@@ -80,6 +80,12 @@ public class Clerks_Listing extends javax.swing.JFrame {
             }
         });
 
+        edit_button.setBackground(new java.awt.Color(21, 71, 52));
+        edit_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/edit.png"))); // NOI18N
+        edit_button.setBorder(null);
+        edit_button.setFocusPainted(false);
+        edit_button.setFocusable(false);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -98,7 +104,8 @@ public class Clerks_Listing extends javax.swing.JFrame {
                             .addComponent(reservations_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(rooms_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(profile_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(sign_out_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(sign_out_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(edit_button, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -114,6 +121,8 @@ public class Clerks_Listing extends javax.swing.JFrame {
                 .addComponent(rooms_button)
                 .addGap(18, 18, 18)
                 .addComponent(reservations_button)
+                .addGap(18, 18, 18)
+                .addComponent(edit_button)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(sign_out_button)
                 .addGap(17, 17, 17))
@@ -239,6 +248,7 @@ public class Clerks_Listing extends javax.swing.JFrame {
     }//GEN-LAST:event_sign_out_buttonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton edit_button;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
