@@ -1,53 +1,58 @@
-
 package room_interface;
 
 import driver.Room;
-import java.awt.List;
+
+import java.awt.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import loginandsignup.Login;
+
+import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import driver.Main;
+import java.time.LocalDate;
+import java.util.Date;
+import java.time.Instant;
+import java.time.ZoneId;
 
 public class Room_Listing extends javax.swing.JFrame {
 
     // to make editeable, just toggle
     
-    private ArrayList<Room> rooms;
-    private DefaultTableModel model;
+     private ArrayList<Room> rooms = new ArrayList<Room>();
+    private DefaultTableModel model = new DefaultTableModel();
+    private JLabel errorMessageLabel = new JLabel(" ");
     
     public Room_Listing() {
         initComponents();
 
-        rooms = new ArrayList<>();
-        rooms.add(new Room("A101", true, "King", 1, "executive"));
-        rooms.add(new Room("A102", false, "Queen", 2, "comfort"));
-        rooms.add(new Room("A103", false, "Full", 2, "business"));
-        rooms.add(new Room("A104", false, "Twin", 2, "economy"));
-        rooms.add(new Room("A105", false, "Twin", 2, "economy"));
-        rooms.add(new Room("A105", false, "Twin", 2, "economy"));
-        rooms.add(new Room("A105", false, "Twin", 2, "economy"));
-        rooms.add(new Room("A105", false, "Twin", 2, "economy"));
-        rooms.add(new Room("A105", false, "Twin", 2, "economy"));
+        rooms = Main.masterController.getAllRooms();
         
         model = (DefaultTableModel)room_list.getModel();
         
         for (Room room : rooms) model.addRow(new Object[] {room.getRoomNumber(), room.getBedType(), room.getQuality()});
-        
-//        when this was a listing, it let me click on the object...
-//        Room_Listing listing_reference = this;
-//        
-//        room_list.addListSelectionListener(new ListSelectionListener() {
-//            
-//            @Override
-//            public void valueChanged(ListSelectionEvent arg0) {
-//                if (!arg0.getValueIsAdjusting()) {
-//                    Login LoginFrame = new Login();
-//                    LoginFrame.setVisible(true);
-//                    LoginFrame.pack();
-//                    LoginFrame.setLocationRelativeTo(null); // center
-//                    listing_reference.dispose();
-//                }
-//            }
-//        });
+
+        room_list.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (start_date.getDate() == null || end_date.getDate() == null){
+                    errorMessageLabel.setText("Please select a time frame to book!");
+                    errorMessageLabel.setVisible(true);
+                    return;
+                }
+                if (!e.getValueIsAdjusting() && room_list.getSelectedRow() >= 0) {
+                    errorMessageLabel.setVisible(false);
+                    int selectedRow = room_list.getSelectedRow();
+                    String roomNumber = (String) model.getValueAt(selectedRow, 0);
+                    Room selectedRoom = Main.masterController.getRoom(roomNumber);
+                    Room_Display roomDisplay = new Room_Display(selectedRoom, convertToLocalDate(start_date.getDate()), convertToLocalDate(end_date.getDate()));
+                    roomDisplay.setVisible(true);
+                }
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -340,29 +345,29 @@ public class Room_Listing extends javax.swing.JFrame {
         model.setRowCount(0); // clear the table
         String quality = (String) room_quality.getSelectedItem();
         String smoking_choice = (String) smoking_option.getSelectedItem();
-        Boolean smoking = true;
-        if (smoking_choice.equalsIgnoreCase("smoking")) smoking = true;
-        else if (smoking_choice.equalsIgnoreCase("non-smoking")) smoking = false;
         String bed_type = (String) bed_size.getSelectedItem();
         String bed_count = (String) number_beds.getSelectedItem();
-        int beds = (int) bed_count.charAt(0); 
 
-        // if all the current attributes apply, display that option
-        // if all defaults, display all
-        
-        // NOT WORKING YET
-        
-        ArrayList<Room> available_rooms = new ArrayList<>();
-        for (Room room : rooms) {
-            if (room.getQuality().equalsIgnoreCase(quality) || quality.equalsIgnoreCase("quality")
-                && (!(room.getBedNumber() == beds)) || bed_count.equalsIgnoreCase("bed number")
-                && (!(room.getBedType().equalsIgnoreCase(bed_type))) || bed_type.equalsIgnoreCase("bed type")
-                && (!(room.getSmoking()))) {
-                available_rooms.add(room);
-            }               
+        return Main.masterController.getFilteredRooms(smoking_choice, bed_type, bed_count, quality);
+    }
+    
+    private ArrayList<Room> update_bookings() {
+        // whenever any action combo button is performed, do this.
+        model.setRowCount(0); // clear the table
+        if (start_date.getDate() == null || end_date.getDate() == null){
+            return rooms;
+        } else {
+            return Main.masterController.getAvailableRooms(rooms, convertToLocalDate(start_date.getDate()), convertToLocalDate(end_date.getDate()));
         }
-        
-        return available_rooms;
+
+    }
+    
+    private LocalDate convertToLocalDate(Date date) {
+        if (date != null) {
+            Instant instant = date.toInstant();
+            return instant.atZone(ZoneId.systemDefault()).toLocalDate();
+        }
+        return null;
     }
     
     private void room_qualityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_room_qualityActionPerformed
@@ -375,6 +380,21 @@ public class Room_Listing extends javax.swing.JFrame {
         for (Room room : available_rooms) model.addRow(new Object[] {room.getRoomNumber(), room.getBedType(), room.getQuality()});
     }//GEN-LAST:event_smoking_optionActionPerformed
 
+    private void number_bedsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smoking_optionActionPerformed
+        rooms = update_list();
+        for (Room room : rooms) model.addRow(new Object[] {room.getRoomNumber(), room.getBedType(), room.getQuality()});
+    }
+    
+    private void bed_sizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smoking_optionActionPerformed
+        rooms = update_list();
+        for (Room room : rooms) model.addRow(new Object[] {room.getRoomNumber(), room.getBedType(), room.getQuality()});
+    }
+      
+    private void dateActionPerformed(PropertyChangeEvent evt){
+        ArrayList<Room> availableRooms = update_bookings();
+        for (Room room : availableRooms) model.addRow(new Object[] {room.getRoomNumber(), room.getBedType(), room.getQuality()});
+    }
+    
     private void sign_out_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sign_out_buttonActionPerformed
         Login LoginFrame = new Login(); 
         LoginFrame.setVisible(true);

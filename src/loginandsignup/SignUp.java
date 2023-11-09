@@ -1,5 +1,8 @@
 package loginandsignup;
 
+import driver.MasterController;
+import driver.Main;
+
 public class SignUp extends javax.swing.JFrame {
 
     public SignUp() {
@@ -220,11 +223,17 @@ public class SignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_emailActionPerformed
 
     private void SignUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpButtonActionPerformed
-        // TODO add your handling code here:
-        String fullName, email, password;
+    // TODO add your handling code here:
+        String fullName, username, userPassword;
         
         try {
-            
+            fullName = fname.getText();
+            username = email.getText();
+            userPassword = password.getText();
+
+            Main.masterController.createGuestAccount(fullName, username, userPassword);
+
+
         } catch(Exception e) {
             System.out.println("Error!" + e.getMessage());
         }

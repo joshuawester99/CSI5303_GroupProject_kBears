@@ -1,10 +1,19 @@
 package loginandsignup;
 
+import driver.Main;
+import reservations_interface.Reservation_Display;
+import room_interface.*;
+
+import javax.swing.*;
+import java.awt.*;
+
 public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
     }
+
+    private JLabel errorMessageLabel = new JLabel("Username not found!");
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -169,6 +178,14 @@ public class Login extends javax.swing.JFrame {
         jPanel1.add(Left);
         Left.setBounds(400, 0, 400, 500);
 
+        errorMessageLabel.setForeground(Color.RED);
+        errorMessageLabel.setBounds(60, 200, 285, 30);
+        errorMessageLabel.setVisible(false);
+
+        Left.add(errorMessageLabel);
+        Left.setComponentZOrder(errorMessageLabel, 0);
+
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -190,8 +207,30 @@ public class Login extends javax.swing.JFrame {
     private void login_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_buttonActionPerformed
         // TODO add your handling code here:
         System.out.println(email_field.getText());
-        // read what's in fields
-        // send to handler object
+        String username;
+        String userPassword;
+
+        username = email_field.getText();
+        userPassword = password_field.getText();
+
+        System.out.println(Main.masterController.checkForUsername(username));
+
+        if (!Main.masterController.checkForUsername(username)){
+            errorMessageLabel.setText("Username not found!");
+            errorMessageLabel.setVisible(true);
+        } else if (!Main.masterController.checkForPassword(username, userPassword)){
+            errorMessageLabel.setText("Invalid Password!");
+            errorMessageLabel.setVisible(true);
+        } else {
+            Main.masterController.setCurrentUser(username);
+            errorMessageLabel.setVisible(false);
+            Room_Listing RoomListingFrame = new Room_Listing();
+            RoomListingFrame.setVisible(true);
+            RoomListingFrame.pack();
+            RoomListingFrame.setLocationRelativeTo(null);
+            this.dispose();
+        }
+
     }//GEN-LAST:event_login_buttonActionPerformed
 
     private void signup_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signup_buttonActionPerformed

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package reservations_interface;
 
 import loginandsignup.Login;
@@ -28,7 +24,7 @@ public class Reservation_Listing extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         room_list = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        search_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -170,9 +166,9 @@ public class Reservation_Listing extends javax.swing.JFrame {
 
         jTextField1.setText("Last Name");
 
-        jButton1.setBackground(new java.awt.Color(21, 71, 52));
-        jButton1.setForeground(new java.awt.Color(255, 184, 28));
-        jButton1.setText("SEARCH");
+        search_button.setBackground(new java.awt.Color(21, 71, 52));
+        search_button.setForeground(new java.awt.Color(255, 184, 28));
+        search_button.setText("SEARCH");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -192,7 +188,7 @@ public class Reservation_Listing extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(search_button, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(46, 46, 46))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -203,7 +199,7 @@ public class Reservation_Listing extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(search_button))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
@@ -232,7 +228,6 @@ public class Reservation_Listing extends javax.swing.JFrame {
     }//GEN-LAST:event_sign_out_buttonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -244,6 +239,7 @@ public class Reservation_Listing extends javax.swing.JFrame {
     private javax.swing.JButton reservations_button;
     private javax.swing.JTable room_list;
     private javax.swing.JButton rooms_button;
+    private javax.swing.JButton search_button;
     private javax.swing.JButton sign_out_button;
     // End of variables declaration//GEN-END:variables
 }

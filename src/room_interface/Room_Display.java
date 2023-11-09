@@ -1,10 +1,25 @@
 package room_interface;
 
+import driver.Guest;
 import loginandsignup.Login;
+import driver.Room;
+
+import java.io.IOException;
+import java.time.LocalDate;
+import driver.Main;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Room_Display extends javax.swing.JFrame {
 
-    public Room_Display() {
+    Room room = new Room();
+    LocalDate startDate;
+    LocalDate endDate;
+    
+    public Room_Display(Room room, LocalDate startDate, LocalDate endDate) {
+        this.room = room;
+        this.startDate = endDate;
+        this.endDate = endDate;
         initComponents();
     }
 
@@ -234,11 +249,16 @@ public class Room_Display extends javax.swing.JFrame {
     }//GEN-LAST:event_sign_out_buttonActionPerformed
 
     private void reserve_roomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserve_roomActionPerformed
-        // TODO add your handling code here:
+        try {
+            Main.masterController.bookRoom(room, startDate, endDate, (Guest) Main.masterController.getCurrentUser());
+            this.dispose();
+        } catch (IOException ex) {
+            Logger.getLogger(Room_Display.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_reserve_roomActionPerformed
 
     private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_back_buttonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
