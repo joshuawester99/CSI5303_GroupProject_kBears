@@ -1,6 +1,7 @@
 package reservations_interface;
 
 import driver.Booking;
+import driver.Frame;
 import driver.Main;
 import loginandsignup.Login;
 
@@ -14,7 +15,7 @@ import java.io.IOException;
 import javax.swing.*;
 import java.awt.*;
 
-public class Reservation_Display extends javax.swing.JFrame {
+public class Reservation_Display extends Frame {
 
     String smoking;
     String beds;
@@ -64,10 +65,10 @@ public class Reservation_Display extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        reservations_button = new javax.swing.JButton();
-        profile_button = new javax.swing.JButton();
-        rooms_button = new javax.swing.JButton();
-        sign_out_button = new javax.swing.JButton();
+//        reservations_button = new javax.swing.JButton();
+//        profile_button = new javax.swing.JButton();
+//        rooms_button = new javax.swing.JButton();
+//        sign_out_button = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -101,35 +102,6 @@ public class Reservation_Display extends javax.swing.JFrame {
         jSeparator1.setBackground(new java.awt.Color(255, 184, 28));
         jSeparator1.setForeground(new java.awt.Color(255, 184, 28));
 
-        reservations_button.setBackground(new java.awt.Color(21, 71, 52));
-        reservations_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/reservation_icon.png"))); // NOI18N
-        reservations_button.setBorder(null);
-        reservations_button.setFocusPainted(false);
-        reservations_button.setFocusable(false);
-
-        profile_button.setBackground(new java.awt.Color(21, 71, 52));
-        profile_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/profile_pic.png"))); // NOI18N
-        profile_button.setBorder(null);
-        profile_button.setFocusPainted(false);
-        profile_button.setFocusable(false);
-        profile_button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        rooms_button.setBackground(new java.awt.Color(21, 71, 52));
-        rooms_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/bed.png"))); // NOI18N
-        rooms_button.setBorder(null);
-        rooms_button.setFocusPainted(false);
-        rooms_button.setFocusable(false);
-
-        sign_out_button.setBackground(new java.awt.Color(21, 71, 52));
-        sign_out_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/sign_out.png"))); // NOI18N
-        sign_out_button.setBorder(null);
-        sign_out_button.setFocusPainted(false);
-        sign_out_button.setFocusable(false);
-        sign_out_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sign_out_buttonActionPerformed(evt);
-            }
-        });
         end_date.setDate(bookingEndDate);
         end_date.setBackground(new java.awt.Color(21, 71, 52));
         end_date.setForeground(new java.awt.Color(255, 204, 51));
@@ -348,22 +320,13 @@ public class Reservation_Display extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void sign_out_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sign_out_buttonActionPerformed
-        Login LoginFrame = new Login();
-        LoginFrame.setVisible(true);
-        LoginFrame.pack();
-        LoginFrame.setLocationRelativeTo(null); // center
-        this.dispose();
-    }//GEN-LAST:event_sign_out_buttonActionPerformed
-
     private void cancel_reservationActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_cancel_reservationActionPerformed
         Main.masterController.deleteBooking(booking);
-        Reservation_Listing ReservationFrame = new Reservation_Listing(Main.masterController.getCurrentUser());
-        ReservationFrame.setVisible(true);
-        ReservationFrame.pack();
-        ReservationFrame.setLocationRelativeTo(null);
+        new Reservation_Listing(Main.masterController.getCurrentUser());
         this.dispose();
     }//GEN-LAST:event_cancel_reservationActionPerformed
+    
+    
     private void dateActionPerformed(PropertyChangeEvent evt){
         errorMessageLabel.setVisible(false);
         LocalDate newStartDate = convertToLocalDate(start_date.getDate());
@@ -395,10 +358,7 @@ public class Reservation_Display extends javax.swing.JFrame {
         LocalDate newEndDate = convertToLocalDate(end_date.getDate());
         if (modificationAvailable){
             booking = Main.masterController.adjustBooking(booking, newStartDate, newEndDate);
-            Reservation_Listing ReservationFrame = new Reservation_Listing(Main.masterController.getCurrentUser());
-            ReservationFrame.setVisible(true);
-            ReservationFrame.pack();
-            ReservationFrame.setLocationRelativeTo(null);
+            new Reservation_Listing(Main.masterController.getCurrentUser());
             this.dispose();
         } else {
             errorMessageLabel.setText("Dates Unavailable!");
@@ -420,10 +380,6 @@ public class Reservation_Display extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JButton modify_reservation;
-    private javax.swing.JButton profile_button;
-    private javax.swing.JButton reservations_button;
-    private javax.swing.JButton rooms_button;
-    private javax.swing.JButton sign_out_button;
     private JLabel errorMessageLabel;
     private com.toedter.calendar.JDateChooser start_date;
     private com.toedter.calendar.JDateChooser end_date;

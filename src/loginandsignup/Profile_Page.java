@@ -1,31 +1,31 @@
 package loginandsignup;
 
 import driver.Main;
+import driver.Frame;
 import driver.User;
 import room_interface.Room_Listing;
 
 import java.io.IOException;
 
-public class Profile_Page extends javax.swing.JFrame {
+public class Profile_Page extends Frame {
 
     User currentUser = new User();
 
     public Profile_Page(User user) {
         this.currentUser = user;
         initComponents();
+        
+        this.setVisible(true);
+        this.pack();
+        this.setLocationRelativeTo(null);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="Style">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        reservations_button = new javax.swing.JButton();
-        profile_button = new javax.swing.JButton();
-        rooms_button = new javax.swing.JButton();
-        sign_out_button = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         submit_button = new javax.swing.JButton();
         back_button = new javax.swing.JButton();
@@ -72,36 +72,6 @@ public class Profile_Page extends javax.swing.JFrame {
 
         jSeparator1.setBackground(new java.awt.Color(255, 184, 28));
         jSeparator1.setForeground(new java.awt.Color(255, 184, 28));
-
-        reservations_button.setBackground(new java.awt.Color(21, 71, 52));
-        reservations_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/reservation_icon.png"))); // NOI18N
-        reservations_button.setBorder(null);
-        reservations_button.setFocusPainted(false);
-        reservations_button.setFocusable(false);
-
-        profile_button.setBackground(new java.awt.Color(21, 71, 52));
-        profile_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/profile_pic.png"))); // NOI18N
-        profile_button.setBorder(null);
-        profile_button.setFocusPainted(false);
-        profile_button.setFocusable(false);
-        profile_button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        rooms_button.setBackground(new java.awt.Color(21, 71, 52));
-        rooms_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/bed.png"))); // NOI18N
-        rooms_button.setBorder(null);
-        rooms_button.setFocusPainted(false);
-        rooms_button.setFocusable(false);
-
-        sign_out_button.setBackground(new java.awt.Color(21, 71, 52));
-        sign_out_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/sign_out.png"))); // NOI18N
-        sign_out_button.setBorder(null);
-        sign_out_button.setFocusPainted(false);
-        sign_out_button.setFocusable(false);
-        sign_out_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sign_out_buttonActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -277,15 +247,7 @@ public class Profile_Page extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void sign_out_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sign_out_buttonActionPerformed
-        Login LoginFrame = new Login();
-        LoginFrame.setVisible(true);
-        LoginFrame.pack();
-        LoginFrame.setLocationRelativeTo(null); // center
-        this.dispose();
-    }//GEN-LAST:event_sign_out_buttonActionPerformed
+    }
 
     private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_submit_buttonActionPerformed
         String newName;
@@ -301,18 +263,12 @@ public class Profile_Page extends javax.swing.JFrame {
 
         Main.masterController.modifyProfile(Main.masterController.getCurrentUser(), newName, newUsername, newPassword);
 
-        Room_Listing RoomListingFrame = new Room_Listing();
-        RoomListingFrame.setVisible(true);
-        RoomListingFrame.pack();
-        RoomListingFrame.setLocationRelativeTo(null);
+        new Room_Listing();
         this.dispose();
     }//GEN-LAST:event_submit_buttonActionPerformed
 
     private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
-        Room_Listing RoomListingFrame = new Room_Listing();
-        RoomListingFrame.setVisible(true);
-        RoomListingFrame.pack();
-        RoomListingFrame.setLocationRelativeTo(null);
+        new Room_Listing();
         this.dispose();
     }//GEN-LAST:event_back_buttonActionPerformed
 
@@ -338,10 +294,6 @@ public class Profile_Page extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPasswordField password;
-    private javax.swing.JButton profile_button;
-    private javax.swing.JButton reservations_button;
-    private javax.swing.JButton rooms_button;
-    private javax.swing.JButton sign_out_button;
     private javax.swing.JButton submit_button;
     private javax.swing.JLabel userInfoLabel;
     private javax.swing.JLabel instructionLabel;

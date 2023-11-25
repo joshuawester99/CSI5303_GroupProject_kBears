@@ -12,6 +12,10 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
+        
+        this.setVisible(true);
+        this.pack();
+        this.setLocationRelativeTo(null); // center
     }
 
     private JLabel errorMessageLabel = new JLabel("Username not found!");
@@ -227,15 +231,9 @@ public class Login extends javax.swing.JFrame {
             System.out.println(Main.masterController.getCurrentUser().getUserName());
             errorMessageLabel.setVisible(false);
             if (Main.masterController.checkUserInstance().equals("Admin")){
-                Clerks_Listing ClerkListingFrame = new Clerks_Listing();
-                ClerkListingFrame.setVisible(true);
-                ClerkListingFrame.pack();
-                ClerkListingFrame.setLocationRelativeTo(null);
+                new Clerks_Listing();
             } else {
-                Room_Listing RoomListingFrame = new Room_Listing();
-                RoomListingFrame.setVisible(true);
-                RoomListingFrame.pack();
-                RoomListingFrame.setLocationRelativeTo(null);
+                new Room_Listing();
             }
 
             this.dispose();
@@ -244,12 +242,9 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_login_buttonActionPerformed
 
     private void signup_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signup_buttonActionPerformed
-        
-        SignUp SignUpFrame = new SignUp(); 
-        SignUpFrame.setVisible(true);
-        SignUpFrame.pack();
-        SignUpFrame.setLocationRelativeTo(null); // center
+        new SignUp(); 
         this.dispose();
+    
     }//GEN-LAST:event_signup_buttonActionPerformed
 
 

@@ -39,6 +39,10 @@ public class Room_Edit extends javax.swing.JFrame {
         bedType = room.getBedType();
         quality = room.getQuality();
         initComponents();
+        
+        this.setVisible(true);
+        this.pack();
+        this.setLocationRelativeTo(null);
     }
 
     // <editor-fold defaultstate="collapsed" desc="Style">//GEN-BEGIN:initComponents
@@ -337,10 +341,7 @@ public class Room_Edit extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sign_out_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sign_out_buttonActionPerformed
-        Login LoginFrame = new Login();
-        LoginFrame.setVisible(true);
-        LoginFrame.pack();
-        LoginFrame.setLocationRelativeTo(null); // center
+        new Login();
         this.dispose();
     }//GEN-LAST:event_sign_out_buttonActionPerformed
 
@@ -375,20 +376,14 @@ public class Room_Edit extends javax.swing.JFrame {
         }
 
         Main.masterController.modifyRoom(currentRoom, newSmoking, newQuality, newBedType, newBedNumber);
-        Room_Listing RoomListingFrame = new Room_Listing();
-        RoomListingFrame.setVisible(true);
-        RoomListingFrame.pack();
-        RoomListingFrame.setLocationRelativeTo(null);
+        new Room_Listing();
         this.dispose();
 
 
     }//GEN-LAST:event_submit_buttonActionPerformed
 
     private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
-        Room_Listing RoomListingFrame = new Room_Listing();
-        RoomListingFrame.setVisible(true);
-        RoomListingFrame.pack();
-        RoomListingFrame.setLocationRelativeTo(null);
+        new Room_Listing();
         this.dispose();
     }//GEN-LAST:event_back_buttonActionPerformed
 

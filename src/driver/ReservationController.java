@@ -18,6 +18,7 @@ public class ReservationController {
         this.roomCatalog = roomCatalog;
     }
 
+    //
     public ArrayList<Room> getAvailableRooms(Boolean smoking, String bedType, int bedNumber, String quality, LocalDate startDate, LocalDate endDate){
         ArrayList<Room> roomList = bookingCatalog.getAvailableRooms(roomCatalog.getMatchingRooms(smoking, bedType, bedNumber, quality), startDate, endDate);
         printRooms(roomList);

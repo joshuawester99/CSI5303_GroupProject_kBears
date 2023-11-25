@@ -14,16 +14,13 @@ public class MasterController {
     private static MasterController instance;
     ProfileController profileController;
     ReservationController reservationController;
-    ReservationsController frontReservationsController;
-    LoginController loginController;
 
     User currentUser = new User();
 
 
-    public MasterController(ProfileController profileController, ReservationController reservationController, ReservationsController frontReservationsController) {
+    public MasterController(ProfileController profileController, ReservationController reservationController) {
         this.profileController = profileController;
         this.reservationController = reservationController;
-        this.frontReservationsController = frontReservationsController;
 
     }
 
@@ -144,5 +141,13 @@ public class MasterController {
 
     public User getCurrentUser() {
         return currentUser;
+    }
+
+    public boolean checkIfGuest (String username){
+        return profileController.checkIfGuest(username);
+    }
+
+    public Guest getGuest(String username) {
+        return profileController.getGuest(username);
     }
 }

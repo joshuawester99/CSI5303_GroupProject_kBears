@@ -9,6 +9,10 @@ public class SignUp extends javax.swing.JFrame {
     public SignUp() {
         initComponents();
         fname.requestFocusInWindow();
+        
+        this.setVisible(true);
+        this.pack();
+        this.setLocationRelativeTo(null); // center
     }
 
     // <editor-fold defaultstate="collapsed" desc="Style">//GEN-BEGIN:initComponents

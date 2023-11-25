@@ -2,6 +2,7 @@
 package reservations_interface;
 
 import driver.Clerk;
+import driver.Frame;
 import driver.Main;
 import driver.Room;
 import driver.User;
@@ -12,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Clerks_Listing extends javax.swing.JFrame {
+public class Clerks_Listing extends Frame {
 
     private ArrayList<User> userList = new ArrayList<User>();
     private DefaultTableModel model = new DefaultTableModel();
@@ -27,7 +28,9 @@ public class Clerks_Listing extends javax.swing.JFrame {
 
         for (User user: userList) model.addRow(new Object[] {user.getStatus(), user.getName(), user.getUserName()});
 
-
+        this.setVisible(true);
+        this.pack();
+        this.setLocationRelativeTo(null);
     }
 
     // <editor-fold defaultstate="collapsed" desc="Style">//GEN-BEGIN:initComponents
@@ -37,10 +40,6 @@ public class Clerks_Listing extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        reservations_button = new javax.swing.JButton();
-        profile_button = new javax.swing.JButton();
-        rooms_button = new javax.swing.JButton();
-        sign_out_button = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         user_list = new javax.swing.JTable();
@@ -69,36 +68,6 @@ public class Clerks_Listing extends javax.swing.JFrame {
 
         jSeparator1.setBackground(new java.awt.Color(255, 184, 28));
         jSeparator1.setForeground(new java.awt.Color(255, 184, 28));
-
-        reservations_button.setBackground(new java.awt.Color(21, 71, 52));
-        reservations_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/reservation_icon.png"))); // NOI18N
-        reservations_button.setBorder(null);
-        reservations_button.setFocusPainted(false);
-        reservations_button.setFocusable(false);
-
-        profile_button.setBackground(new java.awt.Color(21, 71, 52));
-        profile_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/profile_pic.png"))); // NOI18N
-        profile_button.setBorder(null);
-        profile_button.setFocusPainted(false);
-        profile_button.setFocusable(false);
-        profile_button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        rooms_button.setBackground(new java.awt.Color(21, 71, 52));
-        rooms_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/bed.png"))); // NOI18N
-        rooms_button.setBorder(null);
-        rooms_button.setFocusPainted(false);
-        rooms_button.setFocusable(false);
-
-        sign_out_button.setBackground(new java.awt.Color(21, 71, 52));
-        sign_out_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/sign_out.png"))); // NOI18N
-        sign_out_button.setBorder(null);
-        sign_out_button.setFocusPainted(false);
-        sign_out_button.setFocusable(false);
-        sign_out_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sign_out_buttonActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -261,20 +230,10 @@ public class Clerks_Listing extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_sign_out_buttonActionPerformed
         Main.masterController.createClerkAccount(jTextField1.getText());
-        Clerks_Listing ClerkListingFrame = new Clerks_Listing();
-        ClerkListingFrame.setVisible(true);
-        ClerkListingFrame.pack();
-        ClerkListingFrame.setLocationRelativeTo(null);
+        new Clerks_Listing();
         this.dispose();
 
     }
-    private void sign_out_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sign_out_buttonActionPerformed
-        Login LoginFrame = new Login();
-        LoginFrame.setVisible(true);
-        LoginFrame.pack();
-        LoginFrame.setLocationRelativeTo(null); // center
-        this.dispose();
-    }//GEN-LAST:event_sign_out_buttonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -286,10 +245,6 @@ public class Clerks_Listing extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JButton profile_button;
-    private javax.swing.JButton reservations_button;
     private javax.swing.JTable user_list;
-    private javax.swing.JButton rooms_button;
-    private javax.swing.JButton sign_out_button;
     // End of variables declaration//GEN-END:variables
 }

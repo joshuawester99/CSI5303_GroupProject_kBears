@@ -101,6 +101,14 @@ public class ProfileController {
         return userCatalog.getUsers().containsKey(username);
     }
 
+    public boolean checkIfGuest(String username) {
+        return userCatalog.checkIfGuest(username);
+    }
+
+    public Guest getGuest(String username) {
+        return userCatalog.getGuest(username);
+    }
+
     public boolean checkForPassword(String username, String password){
         return userCatalog.getUsers().get(username).getPassword().equals(password);
     }

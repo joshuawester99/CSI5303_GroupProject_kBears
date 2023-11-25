@@ -1,7 +1,5 @@
 package driver;
 
-import java.util.Scanner;
-
 public class Admin extends User {
 
     private int adminID = 1;

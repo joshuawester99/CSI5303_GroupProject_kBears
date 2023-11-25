@@ -230,6 +230,14 @@ public class UserCatalog implements Serializable {
         return users;
     }
 
+    public boolean checkIfGuest(String username){
+        return (users.get(username) instanceof Guest);
+    }
+
+    public Guest getGuest(String username){
+        return (Guest) users.get(username);
+    }
+
     public void setUsers(HashMap<String, User> users) {
         this.users = users;
     }

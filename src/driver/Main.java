@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.HashMap;
-import loginandsignup.LoginController;
-import room_interface.RoomController;
+import loginandsignup.Login;
+import room_interface.Room_Listing;
 import driver.*;
 import loginandsignup.*;
 import reservations_interface.*;
@@ -42,13 +42,6 @@ public class Main {
         userCatalog.guestSignUp("jaired", "jaired@baylor.edu", "hi");
         userCatalog.guestSignUp("joshua", "joshua@baylor.edu", "hi");
         userCatalog.clerkSignUp("George","george@hotel.com");
-
-
-
-
-
-
-
 
 
         bookingCatalog.viewAllBookings();
@@ -93,11 +86,6 @@ public class Main {
  */
 
 
-
-
-
-
-
         System.out.println("hi");
 
         for (String key: userCatalog.getUsers().keySet()){
@@ -110,13 +98,12 @@ public class Main {
 
         ProfileController profileController = new ProfileController(userCatalog);
 
-        //LoginController loginController = new LoginController();
+        masterController = new MasterController(profileController, reservationController);
 
-        ReservationsController frontReservationsController = new ReservationsController();
-
-        masterController = new MasterController(profileController, reservationController, frontReservationsController);
-
-        new LoginController();
+        new Login();
+        //new Room_Listing();
+        //CLI_Login cliLogin = new CLI_Login();
+        //cliLogin.login();
 
 
 

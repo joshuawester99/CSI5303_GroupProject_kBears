@@ -2,6 +2,7 @@
 package room_interface;
 
 import driver.Guest;
+import driver.Frame;
 import driver.Room;
 
 import java.awt.*;
@@ -22,9 +23,7 @@ import java.util.Date;
 import java.time.Instant;
 import java.time.ZoneId;
 
-public class Room_Listing extends javax.swing.JFrame {
-
-    // to make editeable, just toggle
+public class Room_Listing extends Frame {
     
     private ArrayList<Room> rooms = new ArrayList<Room>();
     private DefaultTableModel model = new DefaultTableModel();
@@ -53,10 +52,7 @@ public class Room_Listing extends javax.swing.JFrame {
                         int selectedRow = room_list.getSelectedRow();
                         String roomNumber = (String) model.getValueAt(selectedRow, 0);
                         Room selectedRoom = Main.masterController.getRoom(roomNumber);
-                        Room_Display roomDisplay = new Room_Display(selectedRoom, convertToLocalDate(start_date.getDate()), convertToLocalDate(end_date.getDate()));
-                        roomDisplay.setVisible(true);
-                        roomDisplay.pack();
-                        roomDisplay.setLocationRelativeTo(null);
+                        new Room_Display(selectedRoom, convertToLocalDate(start_date.getDate()), convertToLocalDate(end_date.getDate()));
 
                     }
                 } else if (Main.masterController.checkUserInstance().equals("Clerk")){
@@ -64,29 +60,23 @@ public class Room_Listing extends javax.swing.JFrame {
                     int selectedRow = room_list.getSelectedRow();
                     String roomNumber = (String) model.getValueAt(selectedRow, 0);
                     Room selectedRoom = Main.masterController.getRoom(roomNumber);
-                    Room_Edit roomEditFrame = new Room_Edit(selectedRoom);
-                    roomEditFrame.setVisible(true);
-                    roomEditFrame.pack();
-                    roomEditFrame.setLocationRelativeTo(null);
-
+                    new Room_Edit(selectedRoom);
                 }
 
             }
         });
-
+        
+        this.setVisible(true);
+        this.pack();
+        this.setLocationRelativeTo(null); // center
     }
 
-    // <editor-fold defaultstate="collapsed" desc="Style">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        reservations_button = new javax.swing.JButton();
-        profile_button = new javax.swing.JButton();
-        rooms_button = new javax.swing.JButton();
-        sign_out_button = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         number_beds = new javax.swing.JComboBox<>();
         smoking_option = new javax.swing.JComboBox<>();
@@ -118,46 +108,6 @@ public class Room_Listing extends javax.swing.JFrame {
 
         jSeparator1.setBackground(new java.awt.Color(255, 184, 28));
         jSeparator1.setForeground(new java.awt.Color(255, 184, 28));
-
-        reservations_button.setBackground(new java.awt.Color(21, 71, 52));
-        reservations_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/reservation_icon.png"))); // NOI18N
-        reservations_button.setBorder(null);
-        reservations_button.setFocusPainted(false);
-        reservations_button.setFocusable(false);
-        reservations_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reservations_buttonActionPerformed(evt);
-            }
-        });
-
-        profile_button.setBackground(new java.awt.Color(21, 71, 52));
-        profile_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/profile_pic.png"))); // NOI18N
-        profile_button.setBorder(null);
-        profile_button.setFocusPainted(false);
-        profile_button.setFocusable(false);
-        profile_button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        profile_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                profile_buttonActionPerformed(evt);
-            }
-        });
-
-        rooms_button.setBackground(new java.awt.Color(21, 71, 52));
-        rooms_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/bed.png"))); // NOI18N
-        rooms_button.setBorder(null);
-        rooms_button.setFocusPainted(false);
-        rooms_button.setFocusable(false);
-
-        sign_out_button.setBackground(new java.awt.Color(21, 71, 52));
-        sign_out_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/sign_out.png"))); // NOI18N
-        sign_out_button.setBorder(null);
-        sign_out_button.setFocusPainted(false);
-        sign_out_button.setFocusable(false);
-        sign_out_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sign_out_buttonActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -447,31 +397,6 @@ public class Room_Listing extends javax.swing.JFrame {
         for (Room room : availableRooms) model.addRow(new Object[] {room.getRoomNumber(), room.getBedType(), room.getQuality()});
     }
 
-    private void reservations_buttonActionPerformed(java.awt.event.ActionEvent evt){
-        Reservation_Listing ReservationFrame = new Reservation_Listing(Main.masterController.getCurrentUser());
-        ReservationFrame.setVisible(true);
-        ReservationFrame.pack();
-        ReservationFrame.setLocationRelativeTo(null); // center
-        this.dispose();
-    }
-
-    private void profile_buttonActionPerformed(java.awt.event.ActionEvent evt){
-        Profile_Page ProfileFrame = new Profile_Page(Main.masterController.getCurrentUser());
-        ProfileFrame.setVisible(true);
-        ProfileFrame.pack();
-        ProfileFrame.setLocationRelativeTo(null); // center
-        this.dispose();
-    }
-
-    private void sign_out_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sign_out_buttonActionPerformed
-        Login LoginFrame = new Login(); 
-        LoginFrame.setVisible(true);
-        LoginFrame.pack();
-        LoginFrame.setLocationRelativeTo(null); // center
-        this.dispose();
-    }//GEN-LAST:event_sign_out_buttonActionPerformed
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> bed_size;
     private com.toedter.calendar.JDateChooser end_date;
     private javax.swing.JButton jButton2;
@@ -482,13 +407,8 @@ public class Room_Listing extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JComboBox<String> number_beds;
-    private javax.swing.JButton profile_button;
-    private javax.swing.JButton reservations_button;
     private javax.swing.JTable room_list;
     private javax.swing.JComboBox<String> room_quality;
-    private javax.swing.JButton rooms_button;
-    private javax.swing.JButton sign_out_button;
     private javax.swing.JComboBox<String> smoking_option;
     private com.toedter.calendar.JDateChooser start_date;
-    // End of variables declaration//GEN-END:variables
 }
