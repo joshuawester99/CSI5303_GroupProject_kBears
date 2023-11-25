@@ -145,4 +145,12 @@ public class MasterController {
     public User getCurrentUser() {
         return currentUser;
     }
+
+    public boolean checkIfGuest (String username){
+        return profileController.checkIfGuest(username);
+    }
+
+    public Guest getGuest(String username) {
+        return profileController.getGuest(username);
+    }
 }

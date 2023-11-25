@@ -43,18 +43,6 @@ public class Main {
         userCatalog.guestSignUp("joshua", "joshua@baylor.edu", "hi");
         userCatalog.clerkSignUp("George","george@hotel.com");
 
-
-
-
-
-
-
-
-
-        bookingCatalog.viewAllBookings();
-
-
-
         roomCatalog.createRoom("1", true, "Full", 2, "Comfort");
         roomCatalog.createRoom("2", false, "Queen", 2, "Comfort");
         roomCatalog.createRoom("3", true, "King", 1, "Comfort");
@@ -89,8 +77,11 @@ public class Main {
         bookingCatalog.createBooking(roomCatalog.getRooms().get("6"), LocalDate.of(2023, 11, 17), LocalDate.of(2023, 11, 20), (Guest) userCatalog.getUsers().get("joshua@baylor.edu"));
         bookingCatalog.createBooking(roomCatalog.getRooms().get("7"), LocalDate.of(2023, 11, 24), LocalDate.of(2023, 11, 27), (Guest) userCatalog.getUsers().get("nick@baylor.edu"));
         bookingCatalog.createBooking(roomCatalog.getRooms().get("12"), LocalDate.of(2023, 11, 24), LocalDate.of(2023, 11, 28), (Guest) userCatalog.getUsers().get("nick@baylor.edu"));
-        
+
  */
+        bookingCatalog.viewAllBookings();
+
+
 
 
 
@@ -117,6 +108,9 @@ public class Main {
         masterController = new MasterController(profileController, reservationController, frontReservationsController);
 
         new LoginController();
+
+        CLI_Login cliLogin = new CLI_Login();
+        cliLogin.login();
 
 
 
